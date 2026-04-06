@@ -4,16 +4,18 @@ Standalone portfolio rebuild in progress.
 
 ## Current Status
 
-This repository currently covers the first three implementation slices from the
+This repository currently covers the first five implementation slices from the
 standalone extraction roadmap:
 
 - Phase 1: standalone Next.js App Router scaffold
 - Phase 2: typed local content system foundation with Velite
 - Phase 3: migrated imported portfolio content into unified collections
+- Phase 4: local site shell and reusable UI primitives
+- Phase 5: core content routes and MDX detail pages
 
 The repository now has a real standalone runtime, a strict local content
-pipeline, and migrated `work` / `playground` collections that the next route
-rebuild can target directly.
+pipeline, a reusable local UI layer, and static section/detail routes for work,
+blog, and playground content.
 
 ## Stack
 
@@ -49,6 +51,6 @@ pnpm build
 
 ## Next Milestones
 
-1. Build a local site shell and UI primitives.
-2. Rebuild route surfaces on top of the new content helpers.
-3. Add MDX rendering components and metadata-rich detail pages.
+1. Add explicit `not-found`, `sitemap`, `robots`, and richer metadata assets.
+2. Decide whether the contact page should stay link-based or move to a true server action flow.
+3. Tighten remaining content cleanup, especially local image coverage and old remote references.

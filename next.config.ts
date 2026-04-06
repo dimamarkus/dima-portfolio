@@ -16,6 +16,18 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "darthmall.github.io",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

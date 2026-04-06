@@ -368,11 +368,11 @@ Suggested local components:
 
 ### Checklist
 
-- [ ] Rebuild header and footer locally
-- [ ] Rebuild basic button, card, tag, and section primitives
-- [ ] Rebuild MDX rendering components locally
-- [ ] Replace old shared-block mindset with smaller local components
-- [ ] Keep styles and naming specific to this site
+- [x] Rebuild header and footer locally
+- [x] Rebuild basic button, card, tag, and section primitives
+- [x] Rebuild MDX rendering components locally
+- [x] Replace old shared-block mindset with smaller local components
+- [x] Keep styles and naming specific to this site
 
 ## Phase 5: Rebuild Routes On Top Of The New Data Model
 
@@ -400,14 +400,14 @@ This is where the new site becomes real. The content model and local components 
 
 ### Checklist
 
-- [ ] Build `/`
-- [ ] Build `/work`
-- [ ] Build `/work/[slug]`
-- [ ] Build `/blog`
-- [ ] Build `/blog/[slug]`
-- [ ] Build `/about`
-- [ ] Build `/playground`
-- [ ] Build `/contact`
+- [x] Build `/`
+- [x] Build `/work`
+- [x] Build `/work/[slug]`
+- [x] Build `/blog`
+- [x] Build `/blog/[slug]`
+- [x] Build `/about`
+- [x] Build `/playground`
+- [x] Build `/contact`
 - [ ] Add `not-found`, `sitemap`, metadata, and OG assets
 
 ## Phase 6: Remove WordPress Completely

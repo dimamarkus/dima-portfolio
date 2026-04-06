@@ -17,8 +17,16 @@ export const getAllBlogPosts = (): BlogPost[] => {
   return sortByDateDescending(blog);
 };
 
+export const getRecentBlogPosts = (limit: number): BlogPost[] => {
+  return getAllBlogPosts().slice(0, limit);
+};
+
 export const getAllWorkEntries = (): WorkEntry[] => {
   return sortByDateDescending(work);
+};
+
+export const getWorkEntryBySlug = (slug: string): WorkEntry | undefined => {
+  return work.find((entry) => entry.slug === slug);
 };
 
 export const getFeaturedWorkEntries = (): WorkEntry[] => {
@@ -27,6 +35,22 @@ export const getFeaturedWorkEntries = (): WorkEntry[] => {
 
 export const getAllPlaygroundEntries = (): PlaygroundEntry[] => {
   return sortByDateDescending(playground);
+};
+
+export const getPlaygroundEntryBySlug = (
+  slug: string,
+): PlaygroundEntry | undefined => {
+  return playground.find((entry) => entry.slug === slug);
+};
+
+export const getRecentPlaygroundEntries = (
+  limit: number,
+): PlaygroundEntry[] => {
+  return getAllPlaygroundEntries().slice(0, limit);
+};
+
+export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
+  return blog.find((post) => post.slug === slug);
 };
 
 export const getContentSummary = () => {
