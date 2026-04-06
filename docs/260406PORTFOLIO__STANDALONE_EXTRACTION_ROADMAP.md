@@ -411,7 +411,7 @@ This is where the new site becomes real. The content model and local components 
 - [x] Add `not-found`
 - [x] Add `sitemap`
 - [x] Add baseline metadata and `robots`
-- [ ] Add OG assets
+- [x] Add OG assets
 
 ## Phase 6: Remove WordPress Completely
 
