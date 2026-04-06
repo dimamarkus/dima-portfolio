@@ -1,0 +1,117 @@
+---
+title: "MDX Component Showcase"
+description: "A demonstration of all MDX components available in the portfolio site"
+date: "2024-08-07"
+image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200"
+author: "Dima Markus"
+tags: ["MDX", "React", "Components", "Tutorial"]
+---
+
+# MDX Component Showcase
+
+This document showcases all the MDX components available in the portfolio site.
+
+## Typography Elements
+
+### Headings
+
+MDX supports all heading levels, styled consistently with your theme.
+
+#### Level 4 Heading
+
+##### Level 5 Heading
+
+### Paragraphs and Text
+
+Regular paragraphs like this one are styled with comfortable line height and spacing. You can also use **bold text** and *italic text* for emphasis.
+
+### Lists
+
+Ordered lists:
+
+1. First item
+2. Second item
+3. Third item with nested content
+   - Nested unordered item
+   - Another nested item
+
+Unordered lists:
+
+- Apples
+- Oranges
+- Bananas
+  1. First nested ordered item
+  2. Second nested ordered item
+
+### Blockquotes
+
+> This is a blockquote that can be used to highlight important information or quotes from other sources.
+> 
+> It can span multiple paragraphs for longer quotes.
+
+## Code Blocks
+
+Our CodeBlock component provides syntax highlighting and a copy button:
+
+```javascript
+// This is a JavaScript function
+function greeting(name) {
+  return `Hello, ${name}!`;
+}
+
+// ES6 arrow function
+const sum = (a, b) => a + b;
+
+// Using the function
+console.log(greeting("World"));
+```
+
+```css
+/* CSS example */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+```
+
+## Tables
+
+| Feature | Description | Status |
+|---------|-------------|--------|
+| Typography | Consistent text styling | ✅ |
+| Code Blocks | Syntax highlighting with copy button | ✅ |
+| Tables | Formatted tables with borders | ✅ |
+| Images | Responsive images with captions | ✅ |
+| TOC | Auto-generated table of contents | ✅ |
+
+## Custom Components
+
+### Custom Images
+
+The CustomImage component provides enhanced image display with optional captions:
+
+<CustomImage 
+  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200" 
+  alt="Laptop with code on screen" 
+  caption="A developer's workspace with code on the screen"
+/>
+
+### SoundCloud Embed
+
+The SoundCloudEmbed component lets you embed audio tracks:
+
+<SoundCloudEmbed 
+  url="https://soundcloud.com/dima-markus/tech-house-mix-august-2023" 
+  title="Tech House Mix"
+/>
+
+## Table of Contents
+
+The table of contents is automatically generated from the headings in your document and displayed in the sidebar on larger screens. It provides easy navigation for longer content.
+
+## Conclusion
+
+With these MDX components, you can create rich, interactive content that goes beyond what traditional markdown offers. The components handle common formatting needs while providing enhanced features like syntax highlighting and embedded media.

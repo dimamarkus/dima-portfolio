@@ -1,0 +1,393 @@
+---
+title: "Building a Design System with React and TypeScript"
+description: "A comprehensive guide to creating a scalable design system for your web applications"
+date: "2024-07-15"
+image: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=1200"
+author: "Dima Markus"
+tags: ["Design Systems", "React", "TypeScript", "UI", "Frontend"]
+---
+
+# Building a Design System with React and TypeScript
+
+Design systems are a crucial part of modern web development, ensuring consistent user interfaces across different parts of your application. This guide will walk you through creating a scalable design system using React and TypeScript.
+
+## Why Build a Design System?
+
+A design system provides several benefits:
+
+- **Consistency**: Unified look and feel across your product
+- **Efficiency**: Speeds up development with reusable components
+- **Collaboration**: Improves workflow between designers and developers
+- **Accessibility**: Ensures components follow accessibility best practices
+- **Scalability**: Makes it easier to maintain and extend your UI as your product grows
+
+## Setting Up Your Project
+
+Let's start by setting up a new project with React, TypeScript, and the necessary tools.
+
+### Dependencies
+
+```bash
+# Create a new project
+mkdir design-system && cd design-system
+
+# Initialize package.json
+npm init -y
+
+# Install core dependencies
+npm install react react-dom
+
+# Install development dependencies
+npm install -D typescript @types/react @types/react-dom tsup vite
+```
+
+### Project Structure
+
+Here's a recommended structure for your design system:
+
+```
+design-system/
+├── src/
+│   ├── components/
+│   │   ├── Button/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Button.test.tsx
+│   │   │   ├── Button.stories.tsx
+│   │   │   └── index.ts
+│   │   ├── Card/
+│   │   └── ...
+│   ├── hooks/
+│   ├── styles/
+│   │   ├── tokens/
+│   │   ├── theme.ts
+│   │   └── globals.css
+│   └── utils/
+├── .gitignore
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
+```
+
+## Creating Your First Component
+
+Let's create a Button component to demonstrate the process.
+
+### Button Component
+
+```tsx
+// src/components/Button/Button.tsx
+import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../utils';
+
+const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: 'text-primary underline-offset-4 hover:underline',
+      },
+      size: {
+        default: 'h-10 px-4 py-2',
+        sm: 'h-9 rounded-md px-3',
+        lg: 'h-11 rounded-md px-8',
+        icon: 'h-10 w-10',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+    },
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? React.Fragment : 'button';
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size }), className)}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+Button.displayName = 'Button';
+
+export { Button, buttonVariants };
+```
+
+## Design Tokens
+
+Design tokens are the foundation of your design system, representing values for colors, typography, spacing, etc.
+
+```typescript
+// src/styles/tokens/colors.ts
+export const colors = {
+  primary: {
+    50: '#f0f9ff',
+    100: '#e0f2fe',
+    500: '#0ea5e9',
+    600: '#0284c7',
+    700: '#0369a1',
+    900: '#0c4a6e',
+  },
+  gray: {
+    50: '#f9fafb',
+    100: '#f3f4f6',
+    200: '#e5e7eb',
+    300: '#d1d5db',
+    400: '#9ca3af',
+    500: '#6b7280',
+    600: '#4b5563',
+    700: '#374151',
+    800: '#1f2937',
+    900: '#111827',
+  },
+  // Add more colors as needed
+};
+```
+
+## Creating a Theme Provider
+
+```tsx
+// src/components/ThemeProvider/ThemeProvider.tsx
+import React, { createContext, useContext, useEffect, useState } from 'react';
+
+type Theme = 'light' | 'dark' | 'system';
+
+interface ThemeProviderProps {
+  children: React.ReactNode;
+  defaultTheme?: Theme;
+  storageKey?: string;
+}
+
+interface ThemeProviderState {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+}
+
+const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
+
+export function ThemeProvider({
+  children,
+  defaultTheme = 'system',
+  storageKey = 'ui-theme',
+  ...props
+}: ThemeProviderProps) {
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== 'undefined') {
+      const storedTheme = localStorage.getItem(storageKey) as Theme | null;
+      if (storedTheme) {
+        return storedTheme;
+      }
+      
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+    }
+    
+    return defaultTheme;
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    
+    if (theme === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+        .matches
+        ? 'dark'
+        : 'light';
+      
+      root.classList.add(systemTheme);
+      return;
+    }
+    
+    root.classList.add(theme);
+  }, [theme]);
+
+  const value = {
+    theme,
+    setTheme: (theme: Theme) => {
+      localStorage.setItem(storageKey, theme);
+      setTheme(theme);
+    },
+  };
+
+  return (
+    <ThemeProviderContext.Provider {...props} value={value}>
+      {children}
+    </ThemeProviderContext.Provider>
+  );
+}
+
+export const useTheme = () => {
+  const context = useContext(ThemeProviderContext);
+  
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  
+  return context;
+};
+```
+
+## Documentation with Storybook
+
+Storybook helps document your components and provides an interactive playground:
+
+```tsx
+// src/components/Button/Button.stories.tsx
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from './Button';
+
+const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
+  component: Button,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+    },
+    size: {
+      control: 'select',
+      options: ['default', 'sm', 'lg', 'icon'],
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const Default: Story = {
+  args: {
+    children: 'Button',
+    variant: 'default',
+    size: 'default',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    children: 'Secondary',
+    variant: 'secondary',
+  },
+};
+
+export const Destructive: Story = {
+  args: {
+    children: 'Destructive',
+    variant: 'destructive',
+  },
+};
+```
+
+## Testing Your Components
+
+Testing ensures your components work as expected:
+
+```tsx
+// src/components/Button/Button.test.tsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Button } from './Button';
+
+describe('Button', () => {
+  it('renders correctly', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByRole('button', { name: /click me/i })).toBeInTheDocument();
+  });
+
+  it('handles click events', async () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    
+    await userEvent.click(screen.getByRole('button', { name: /click me/i }));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('applies variant classes', () => {
+    render(<Button variant="destructive">Danger</Button>);
+    const button = screen.getByRole('button', { name: /danger/i });
+    expect(button).toHaveClass('bg-destructive');
+  });
+});
+```
+
+## Publishing Your Design System
+
+Once you've built your design system, you'll want to publish it for use in other projects.
+
+### Build Configuration
+
+```typescript
+// tsup.config.ts
+import { defineConfig } from 'tsup';
+
+export default defineConfig({
+  entry: ['src/index.ts'],
+  format: ['esm', 'cjs'],
+  dts: true,
+  splitting: true,
+  sourcemap: true,
+  clean: true,
+  external: ['react', 'react-dom'],
+});
+```
+
+### Package.json Configuration
+
+```json
+{
+  "name": "your-design-system",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
+}
+```
+
+## Conclusion
+
+Building a design system requires initial investment but pays off in the long run with more consistent interfaces and faster development cycles. The key is to start small, establish solid foundations, and gradually expand as your needs grow.
+
+Remember that a good design system is never truly finished—it should evolve alongside your product and adapt to new requirements and user feedback.
+
+Happy building!

@@ -1,0 +1,79 @@
+---
+title: "Getting Started with Next.js"
+description: "A beginner's guide to building modern web applications with Next.js"
+date: "2023-11-15"
+image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200"
+author: "Dima Markus"
+tags: ["Next.js", "React", "Web Development"]
+---
+
+# Getting Started with Next.js
+
+Next.js is a powerful React framework that provides features like server-side rendering, static site generation, and API routes out of the box. It's designed to make building production-ready React applications as simple as possible.
+
+## Why Choose Next.js?
+
+There are several reasons why Next.js has become one of the most popular frameworks for building modern web applications:
+
+1. **Server-side Rendering (SSR)** - Next.js can render pages on the server, which improves SEO and initial load performance.
+2. **Static Site Generation (SSG)** - You can pre-render pages at build time, resulting in fast loading times and reduced server load.
+3. **API Routes** - Create API endpoints easily within the same codebase.
+4. **File-based Routing** - No need for complex router configurations.
+5. **Built-in CSS and Sass Support** - Style your application with minimal setup.
+
+## Setting Up Your First Next.js Project
+
+Getting started with Next.js is incredibly simple. Here's how:
+
+```bash
+# Create a new Next.js app
+npx create-next-app@latest my-next-app
+cd my-next-app
+
+# Start the development server
+npm run dev
+```
+
+After running these commands, open your browser and navigate to `http://localhost:3000` to see your application in action.
+
+## Basic Routing
+
+Next.js uses a file-system based router. Files in the `pages` directory automatically become routes. For example:
+
+- `pages/index.js` → `/`
+- `pages/about.js` → `/about`
+- `pages/blog/[slug].js` → `/blog/:slug`
+
+## Server Components vs. Client Components
+
+With the App Router, Next.js introduced a new paradigm of Server and Client Components:
+
+- **Server Components** run only on the server and can directly access server resources
+- **Client Components** run on both the server and client and are interactive
+
+Here's a simple example of a Server Component:
+
+```jsx
+// app/page.tsx - Server Component by default
+async function getData() {
+  const res = await fetch('https://api.example.com/data');
+  return res.json();
+}
+
+export default async function Page() {
+  const data = await getData();
+
+  return (
+    <main>
+      <h1>Welcome to my app</h1>
+      <p>Here's some data: {data.message}</p>
+    </main>
+  );
+}
+```
+
+## Conclusion
+
+Next.js simplifies many aspects of building modern web applications. Whether you're building a small personal project or a large-scale application, Next.js provides the tools and features you need to build high-performance, SEO-friendly web applications.
+
+I hope this brief introduction helps you get started with Next.js!

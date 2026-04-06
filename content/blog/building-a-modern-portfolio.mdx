@@ -1,0 +1,71 @@
+---
+title: 'Building a Modern Developer Portfolio with Next.js 14'
+description: 'A deep dive into creating a performant, accessible, and beautiful portfolio website using the latest web technologies.'
+date: '2024-03-15'
+image: 'https://placehold.co/1920x1080/1a1a1a/ffffff?text=Portfolio'
+author: 'Dima Markus'
+tags: ['Next.js', 'React', 'TypeScript', 'Web Development']
+---
+
+# Building a Modern Developer Portfolio with Next.js 14
+
+As a developer in 2024, having a portfolio that showcases both your work and your technical abilities is crucial. In this post, I'll walk through my process of building this very website using Next.js 14, React Server Components, and TypeScript.
+
+## Why Next.js 14?
+
+The latest version of Next.js brings significant improvements to the developer experience and performance:
+
+- App Router for better routing and layouts
+- Server Components for improved performance
+- Built-in TypeScript support
+- Improved image optimization
+- Enhanced static and dynamic rendering options
+
+## Key Features Implemented
+
+### 1. Server Components
+
+Server Components allow us to render complex UI on the server, reducing the JavaScript bundle sent to the client:
+
+```tsx
+async function BlogList() {
+  const posts = await getPosts();
+
+  return (
+    <div className='grid gap-6'>
+      {posts.map((post) => (
+        <BlogCard key={post.slug} post={post} />
+      ))}
+    </div>
+  );
+}
+```
+
+### 2. Content Management
+
+Using MDX for content management provides a great developer experience while maintaining flexibility:
+
+```mdx
+---
+title: My Blog Post
+---
+
+# Welcome to my blog
+
+This is a paragraph with **bold** text and _italics_.
+```
+
+## Performance Considerations
+
+Performance was a key focus throughout development. Some strategies employed:
+
+1. Image optimization using Next.js Image component
+2. Code splitting and lazy loading
+3. Static page generation where possible
+4. Efficient styling with Tailwind CSS
+
+## Conclusion
+
+Building a modern portfolio is about more than just showcasing work—it's an opportunity to demonstrate technical expertise and attention to detail. The choices made in this project reflect current best practices while maintaining simplicity and performance.
+
+Stay tuned for more posts about specific features and implementations used in this site!
