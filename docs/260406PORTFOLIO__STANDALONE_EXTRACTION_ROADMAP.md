@@ -408,7 +408,10 @@ This is where the new site becomes real. The content model and local components 
 - [x] Build `/about`
 - [x] Build `/playground`
 - [x] Build `/contact`
-- [ ] Add `not-found`, `sitemap`, metadata, and OG assets
+- [x] Add `not-found`
+- [x] Add `sitemap`
+- [x] Add baseline metadata and `robots`
+- [ ] Add OG assets
 
 ## Phase 6: Remove WordPress Completely
 

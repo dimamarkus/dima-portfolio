@@ -19,6 +19,7 @@ const site = defineCollection({
     name: s.string().min(1),
     title: s.string().min(1),
     email: s.string().email(),
+    siteUrl: s.string().url(),
     location: s.string().min(1),
     summary: s.string().min(1),
     resumePath: s.string().min(1),

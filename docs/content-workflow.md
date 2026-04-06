@@ -40,6 +40,7 @@ Why this decision:
 - do not add fallback content to hide missing fields
 - keep long-form narrative in MDX body content
 - keep singleton site metadata in `content/site/config.yml`
+- keep canonical site settings like `siteUrl` in `content/site/config.yml`
 - prefer filename-driven slugs over frontmatter slugs
 
 ## Validation Commands

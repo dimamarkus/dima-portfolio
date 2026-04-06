@@ -3,16 +3,36 @@ import type { ReactNode } from "react";
 
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
+import { getSiteConfig } from "@/lib/content";
+import { getAbsoluteUrl } from "@/lib/utils/get-site-url";
 
 import "./globals.css";
 
+const site = getSiteConfig();
+
 export const metadata: Metadata = {
+  metadataBase: new URL(site.siteUrl),
   title: {
-    default: "Dima Markus | Standalone Portfolio",
-    template: "%s | Dima Markus",
+    default: `${site.name} | ${site.title}`,
+    template: `%s | ${site.name}`,
   },
-  description:
-    "Standalone rebuild in progress for a local-first portfolio powered by Next.js and typed content collections.",
+  description: site.summary,
+  alternates: {
+    canonical: getAbsoluteUrl("/"),
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: getAbsoluteUrl("/"),
+    title: site.name,
+    siteName: site.name,
+    description: site.summary,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.summary,
+  },
 };
 
 type RootLayoutProps = Readonly<{

@@ -15,7 +15,8 @@ standalone extraction roadmap:
 
 The repository now has a real standalone runtime, a strict local content
 pipeline, a reusable local UI layer, and static section/detail routes for work,
-blog, and playground content.
+blog, and playground content. It also now ships a real `not-found` page plus
+generated `robots.txt` and `sitemap.xml`.
 
 ## Stack
 
@@ -51,6 +52,6 @@ pnpm build
 
 ## Next Milestones
 
-1. Add explicit `not-found`, `sitemap`, `robots`, and richer metadata assets.
+1. Add custom OG assets and tighten social-preview metadata.
 2. Decide whether the contact page should stay link-based or move to a true server action flow.
 3. Tighten remaining content cleanup, especially local image coverage and old remote references.
