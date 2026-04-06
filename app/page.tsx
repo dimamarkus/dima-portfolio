@@ -1,10 +1,24 @@
-const highlights = [
-  "Next.js App Router foundation",
-  "TypeScript and strict project settings",
-  "Tailwind CSS 4 baseline styling",
+import { getContentSummary, getSiteConfig } from "@/lib/content";
+
+const stats = [
+  {
+    label: "Blog posts ready to migrate",
+    key: "blogPosts",
+  },
+  {
+    label: "Work entries in final collection",
+    key: "workItems",
+  },
+  {
+    label: "Playground entries in final collection",
+    key: "playgroundItems",
+  },
 ] as const;
 
 export default function HomePage() {
+  const site = getSiteConfig();
+  const summary = getContentSummary();
+
   return (
     <main className="space-y-10">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-sky-950/20 md:p-12">
@@ -14,29 +28,34 @@ export default function HomePage() {
           </span>
           <div className="space-y-4">
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-              A clean standalone portfolio shell is now in place.
+              {site.hero.headline}
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-slate-300">
-              This repo now has its own Next.js runtime, local tooling, and a
-              minimal app shell so future migration work has a real destination.
+              {site.hero.supportingText}
             </p>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-slate-300">
-            <span>Phase 1 checkpoint</span>
+            <span>{site.title}</span>
             <span aria-hidden="true">/</span>
-            <span>Standalone app scaffold</span>
+            <span>{site.location}</span>
+            <span aria-hidden="true">/</span>
+            <a className="text-sky-300 hover:text-sky-200" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
           </div>
         </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-3">
-        {highlights.map((highlight) => (
+        {stats.map((stat) => (
           <article
-            key={highlight}
+            key={stat.key}
             className="rounded-2xl border border-white/10 bg-slate-950/40 p-6"
           >
-            <p className="text-sm text-slate-400">Included</p>
-            <p className="mt-3 text-lg font-semibold text-white">{highlight}</p>
+            <p className="text-sm text-slate-400">{stat.label}</p>
+            <p className="mt-3 text-3xl font-semibold text-white">
+              {summary[stat.key]}
+            </p>
           </article>
         ))}
       </section>
@@ -61,8 +80,8 @@ export default function HomePage() {
             Phase 1 is represented by this app shell.
           </p>
           <p className="mt-2 text-sm leading-6 text-slate-300">
-            The next layer adds a typed local content system so future routes can
-            consume real collections instead of temporary placeholder copy.
+            Phase 2 adds the typed local content system, slug strategy, and
+            content query helpers that the route rebuild will sit on top of.
           </p>
         </div>
       </section>

@@ -1,0 +1,31 @@
+name: Dima Markus
+title: Product-minded engineer, designer, and builder
+email: hello@dimamarkus.com
+location: Berlin, Germany
+summary: >
+  I build thoughtful product experiences, developer tools, and creative
+  experiments with a bias toward clear systems and durable execution.
+resumePath: /resume/dima-markus-resume.pdf
+hero:
+  headline: A standalone portfolio built around local content, not old baggage.
+  supportingText: >
+    This rebuild strips away monorepo coupling and hybrid CMS assumptions so the
+    portfolio can become a fast, content-first standalone app.
+navigation:
+  - label: Home
+    href: /
+  - label: Work
+    href: /work
+  - label: Blog
+    href: /blog
+  - label: Playground
+    href: /playground
+  - label: About
+    href: /about
+  - label: Contact
+    href: /contact
+socialLinks:
+  - label: GitHub
+    href: https://github.com/dimamarkus
+  - label: LinkedIn
+    href: https://www.linkedin.com/in/dimamarkus
