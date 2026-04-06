@@ -7,6 +7,7 @@ import { Container } from "@/components/site/container";
 import { Prose } from "@/components/site/prose";
 import { Tag } from "@/components/ui/tag";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/content";
+import { buildArticleMetadata } from "@/lib/seo/build-metadata";
 import { formatDate } from "@/lib/utils/format-date";
 
 type BlogDetailPageProps = Readonly<{
@@ -31,10 +32,14 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return buildArticleMetadata({
     title: post.title,
     description: post.description,
-  };
+    path: `/blog/${post.slug}`,
+    imageUrl: post.image,
+    publishedTime: post.date,
+    tags: post.tags,
+  });
 }
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {

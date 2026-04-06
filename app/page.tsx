@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { Container } from "@/components/site/container";
 import { EntryCard } from "@/components/site/entry-card";
 import { Hero } from "@/components/site/hero";
@@ -10,9 +12,17 @@ import {
   getRecentPlaygroundEntries,
   getSiteConfig,
 } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/build-metadata";
+
+const site = getSiteConfig();
+
+export const metadata: Metadata = buildPageMetadata({
+  title: site.name,
+  description: site.summary,
+  path: "/",
+});
 
 export default function HomePage() {
-  const site = getSiteConfig();
   const summary = getContentSummary();
   const featuredWork = getFeaturedWorkEntries();
   const recentPosts = getRecentBlogPosts(3);

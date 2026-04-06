@@ -4,12 +4,14 @@ import { Container } from "@/components/site/container";
 import { EntryCard } from "@/components/site/entry-card";
 import { Section } from "@/components/site/section";
 import { getAllPlaygroundEntries } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { formatDate } from "@/lib/utils/format-date";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Playground",
   description: "Music sessions and side-project notes from the standalone portfolio.",
-};
+  path: "/playground",
+});
 
 export default function PlaygroundPage() {
   const entries = getAllPlaygroundEntries();

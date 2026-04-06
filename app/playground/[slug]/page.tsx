@@ -10,6 +10,7 @@ import {
   getAllPlaygroundEntries,
   getPlaygroundEntryBySlug,
 } from "@/lib/content";
+import { buildArticleMetadata } from "@/lib/seo/build-metadata";
 import { formatDate } from "@/lib/utils/format-date";
 
 type PlaygroundDetailPageProps = Readonly<{
@@ -34,10 +35,14 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return buildArticleMetadata({
     title: entry.title,
     description: entry.description,
-  };
+    path: `/playground/${entry.slug}`,
+    imageUrl: entry.coverImage,
+    publishedTime: entry.date,
+    tags: entry.tags,
+  });
 }
 
 export default async function PlaygroundDetailPage({

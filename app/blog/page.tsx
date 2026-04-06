@@ -4,12 +4,14 @@ import { Container } from "@/components/site/container";
 import { EntryCard } from "@/components/site/entry-card";
 import { Section } from "@/components/site/section";
 import { getAllBlogPosts } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { formatDate } from "@/lib/utils/format-date";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Blog",
   description: "Writing from the standalone portfolio content collection.",
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllBlogPosts();

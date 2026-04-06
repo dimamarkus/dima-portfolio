@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import { Container } from "@/components/site/container";
 import { Section } from "@/components/site/section";
 import { getSiteConfig } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/build-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description: "Contact details and external profiles for Dima Markus.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const site = getSiteConfig();

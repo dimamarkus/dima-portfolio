@@ -4,11 +4,13 @@ import { Container } from "@/components/site/container";
 import { EntryCard } from "@/components/site/entry-card";
 import { Section } from "@/components/site/section";
 import { getAllWorkEntries } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/build-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Work",
   description: "Projects and case studies from the standalone portfolio rebuild.",
-};
+  path: "/work",
+});
 
 export default function WorkPage() {
   const entries = getAllWorkEntries();

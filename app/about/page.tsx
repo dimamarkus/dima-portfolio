@@ -4,11 +4,13 @@ import { Container } from "@/components/site/container";
 import { Section } from "@/components/site/section";
 import { Tag } from "@/components/ui/tag";
 import { getSiteConfig } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/seo/build-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About",
   description: "Background, focus areas, and links for Dima Markus.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   const site = getSiteConfig();
