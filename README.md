@@ -4,14 +4,16 @@ Standalone portfolio rebuild in progress.
 
 ## Current Status
 
-This repository currently covers the first two implementation slices from the
+This repository currently covers the first three implementation slices from the
 standalone extraction roadmap:
 
 - Phase 1: standalone Next.js App Router scaffold
 - Phase 2: typed local content system foundation with Velite
+- Phase 3: migrated imported portfolio content into unified collections
 
-The copied legacy content is still present for migration work, but the new
-runtime is intentionally being built around the final local-first architecture.
+The repository now has a real standalone runtime, a strict local content
+pipeline, and migrated `work` / `playground` collections that the next route
+rebuild can target directly.
 
 ## Stack
 
@@ -41,12 +43,12 @@ pnpm build
 ## Content Notes
 
 - `content/blog/*` is already wired into the new content pipeline.
-- `content/work/*` and `content/playground/*` are the final collection targets.
-- `content/projects/*`, `content/case-studies/*`, and `content/dj-sets/*` are
-  legacy imports waiting for Phase 3 migration.
+- `content/work/*` contains the migrated project and case-study content.
+- `content/playground/*` contains the migrated music / DJ content.
+- Slugs come from filenames, not frontmatter.
 
 ## Next Milestones
 
-1. Migrate projects and case studies into `content/work`.
-2. Move DJ content into `content/playground` or delete it intentionally.
-3. Rebuild route surfaces on top of the new content helpers.
+1. Build a local site shell and UI primitives.
+2. Rebuild route surfaces on top of the new content helpers.
+3. Add MDX rendering components and metadata-rich detail pages.

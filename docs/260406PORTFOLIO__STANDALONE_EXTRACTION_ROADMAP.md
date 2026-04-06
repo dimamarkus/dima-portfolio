@@ -1,7 +1,7 @@
 ---
 createdAt: 2026-04-06
 title: Standalone Portfolio Extraction Roadmap
-status: proposed
+status: in-progress
 ---
 
 # Standalone Portfolio Extraction Roadmap
@@ -260,12 +260,12 @@ Before migrating content, we need a real app to migrate into. This phase creates
 
 ### Checklist
 
-- [ ] Initialize `dima-portfolio` as its own pnpm project
-- [ ] Add latest stable Next.js / React / TypeScript / Tailwind stack at implementation time
-- [ ] Add `app/layout.tsx`, `app/page.tsx`, and base global styles
-- [ ] Add path aliases for local imports only
-- [ ] Remove any monorepo-specific dependency assumptions
-- [ ] Add a real `README.md` for the standalone repo
+- [x] Initialize `dima-portfolio` as its own pnpm project
+- [x] Add latest stable Next.js / React / TypeScript / Tailwind stack at implementation time
+- [x] Add `app/layout.tsx`, `app/page.tsx`, and base global styles
+- [x] Add path aliases for local imports only
+- [x] Remove any monorepo-specific dependency assumptions
+- [x] Add a real `README.md` for the standalone repo
 
 ## Phase 2: Define The New Content System
 
@@ -291,12 +291,12 @@ This is the most important architecture step. If we do not fix content first, th
 
 ### Checklist
 
-- [ ] Install and configure Velite
-- [ ] Define schemas for `work`, `blog`, `playground`, and singleton site config
-- [ ] Add typed content query helpers in `lib/content`
-- [ ] Decide final slug strategy before importing all content
-- [ ] Remove all hybrid-content logic from the new codebase
-- [ ] Document the content-writing workflow in `docs/`
+- [x] Install and configure Velite
+- [x] Define schemas for `work`, `blog`, `playground`, and singleton site config
+- [x] Add typed content query helpers in `lib/content`
+- [x] Decide final slug strategy before importing all content
+- [x] Remove all hybrid-content logic from the new codebase
+- [x] Document the content-writing workflow in `docs/`
 
 ## Phase 3: Normalize And Migrate Existing Content
 
@@ -326,12 +326,12 @@ The copied MDX is a starting point, not production-ready content. It still talks
 
 ### Checklist
 
-- [ ] Create `content/work/`
-- [ ] Move and rename project/case-study files into the new work collection
+- [x] Create `content/work/`
+- [x] Move and rename project/case-study files into the new work collection
 - [ ] Port any missing detail from `lib/data/portfolio-data.ts`
-- [ ] Clean stale wording in copied MDX files
-- [ ] Replace fake demo URLs and names
-- [ ] Remove content that has no intended route
+- [x] Clean stale wording in copied MDX files
+- [x] Replace fake demo URLs and names
+- [x] Remove content that has no intended route
 - [ ] Add local image references where possible
 
 ## Phase 4: Build The Local Design System And Site Shell
