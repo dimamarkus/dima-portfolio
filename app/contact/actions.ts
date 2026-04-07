@@ -4,11 +4,11 @@ import type {
   ContactActionState,
   ContactFormErrors,
   ContactFormFields,
-} from "@/app/contact/contact-form-state";
-import { initialContactActionState } from "@/app/contact/contact-form-state";
+} from "./contact-form-state";
+import { initialContactActionState } from "./contact-form-state";
 import { getSiteConfig } from "@/lib/content";
 
-type ContactFieldName = keyof ContactFormFields;
+type ContactFieldName = keyof ContactFormFields & string;
 
 const getFieldValue = (formData: FormData, fieldName: ContactFieldName) => {
   const value = formData.get(fieldName);

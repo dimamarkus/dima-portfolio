@@ -2,8 +2,8 @@
 
 import { useActionState, useEffect } from "react";
 
-import { createContactDraft } from "@/app/contact/actions";
-import { initialContactActionState } from "@/app/contact/contact-form-state";
+import { createContactDraft } from "./actions";
+import { initialContactActionState } from "./contact-form-state";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

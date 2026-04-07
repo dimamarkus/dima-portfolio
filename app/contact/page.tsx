@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ContactForm } from "@/app/contact/contact-form";
+import { ContactForm } from "./contact-form";
 import { Container } from "@/components/site/container";
 import { Section } from "@/components/site/section";
 import { getSiteConfig } from "@/lib/content";
