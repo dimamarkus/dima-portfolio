@@ -18,6 +18,7 @@ type ButtonAsLinkProps = SharedButtonProps &
 type ButtonAsButtonProps = SharedButtonProps &
   Readonly<{
     href?: never;
+    disabled?: boolean;
     type?: "button" | "submit" | "reset";
   }>;
 
@@ -33,7 +34,7 @@ const buttonStyles = {
 } as const;
 
 const sharedClassName =
-  "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition-colors";
+  "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60";
 
 export const Button = (props: ButtonProps) => {
   const variant = props.variant ?? "primary";
@@ -48,7 +49,11 @@ export const Button = (props: ButtonProps) => {
   }
 
   return (
-    <button className={className} type={props.type ?? "button"}>
+    <button
+      className={className}
+      disabled={props.disabled}
+      type={props.type ?? "button"}
+    >
       {props.children}
     </button>
   );
