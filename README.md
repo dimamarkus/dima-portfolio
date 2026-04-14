@@ -32,9 +32,11 @@ validated server action to open a prefilled direct-email draft.
 
 ```bash
 pnpm install
-pnpm build:content
 pnpm dev
 ```
+
+`pnpm dev` now generates the Velite output before Next.js starts, so the `#content`
+module is available even on a fresh clone.
 
 ## Validation
 

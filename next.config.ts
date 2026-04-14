@@ -1,15 +1,14 @@
 import type { NextConfig } from "next";
 
 const isDev = process.argv.includes("dev");
-const isBuild = process.argv.includes("build");
 
-if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
+if (!process.env.VELITE_STARTED && isDev) {
   process.env.VELITE_STARTED = "1";
 
   void import("velite").then((module) =>
     module.build({
-      watch: isDev,
-      clean: !isDev,
+      watch: true,
+      clean: false,
     }),
   );
 }
