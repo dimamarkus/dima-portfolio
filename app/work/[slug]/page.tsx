@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { MdxContent } from "@/components/mdx-content";
 import { Container } from "@/components/site/container";
+import { ProjectFacts } from "@/components/site/project-facts";
 import { Prose } from "@/components/site/prose";
 import { Tag } from "@/components/ui/tag";
 import { getAllWorkEntries, getWorkEntryBySlug } from "@/lib/content";
@@ -68,11 +69,18 @@ export default async function WorkDetailPage({
             {entry.summary}
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {entry.technologies.map((technology) => (
-            <Tag key={technology}>{technology}</Tag>
-          ))}
-        </div>
+        <ProjectFacts
+          items={[
+            {
+              label: "Industry",
+              values: entry.industries,
+            },
+            {
+              label: "Tech stack",
+              values: entry.technologies,
+            },
+          ]}
+        />
       </header>
 
       <Prose>

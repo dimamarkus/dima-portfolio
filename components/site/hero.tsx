@@ -7,11 +7,13 @@ type HeroProps = Readonly<{
   supportingText: string;
   summary: string;
   location: string;
+  primaryActionLabel: string;
   primaryActionHref: string;
+  secondaryActionLabel: string;
   secondaryActionHref: string;
   stats: Array<{
     label: string;
-    value: number;
+    value: string | number;
   }>;
 }>;
 
@@ -21,7 +23,9 @@ export const Hero = ({
   supportingText,
   summary,
   location,
+  primaryActionLabel,
   primaryActionHref,
+  secondaryActionLabel,
   secondaryActionHref,
   stats,
 }: HeroProps) => {
@@ -42,9 +46,9 @@ export const Hero = ({
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button href={primaryActionHref}>View work</Button>
+            <Button href={primaryActionHref}>{primaryActionLabel}</Button>
             <Button href={secondaryActionHref} variant="secondary">
-              Read the blog
+              {secondaryActionLabel}
             </Button>
           </div>
           <p className="text-sm text-slate-400">{location}</p>

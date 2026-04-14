@@ -6,12 +6,15 @@ import { Hero } from "@/components/site/hero";
 import { Section } from "@/components/site/section";
 import { Button } from "@/components/ui/button";
 import {
-  getContentSummary,
   getFeaturedWorkEntries,
   getRecentBlogPosts,
   getRecentPlaygroundEntries,
   getSiteConfig,
 } from "@/lib/content";
+import {
+  formatWorkEntryCornerMeta,
+  formatWorkEntryMeta,
+} from "@/lib/content/format-work-entry-meta";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 
 const site = getSiteConfig();
@@ -23,23 +26,22 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function HomePage() {
-  const summary = getContentSummary();
   const featuredWork = getFeaturedWorkEntries();
   const recentPosts = getRecentBlogPosts(3);
   const recentPlayground = getRecentPlaygroundEntries(2);
 
   const stats = [
     {
-      label: "Blog posts",
-      value: summary.blogPosts,
+      label: "Years shipping product UI",
+      value: "12+",
     },
     {
-      label: "Work entries",
-      value: summary.workItems,
+      label: "Users on shipped products",
+      value: "350K+",
     },
     {
-      label: "Playground entries",
-      value: summary.playgroundItems,
+      label: "Major launches led",
+      value: "2",
     },
   ];
 
@@ -48,8 +50,10 @@ export default function HomePage() {
       <Hero
         eyebrow={site.hero.eyebrow}
         location={site.location}
+        primaryActionLabel="View work"
         primaryActionHref="/work"
-        secondaryActionHref="/blog"
+        secondaryActionLabel="About me"
+        secondaryActionHref="/about"
         stats={stats}
         summary={site.summary}
         supportingText={site.hero.supportingText}
@@ -58,18 +62,19 @@ export default function HomePage() {
 
       <Section
         action={<Button href="/work" variant="secondary">All work</Button>}
-        description="A selection of product, UX, and engineering work across fintech, AI, ecommerce, and data-heavy tools."
+        description="Case studies on front-end architecture, product systems, and design-led execution across AI, fintech, ecommerce, and data-heavy tools."
         eyebrow="Featured work"
-        title="Selected work"
+        title="Case studies and shipped product work"
       >
         <div className="grid gap-6 lg:grid-cols-2">
           {featuredWork.map((entry) => (
             <EntryCard
               key={entry.slug}
+              cornerMeta={formatWorkEntryCornerMeta(entry)}
               description={entry.summary}
               eyebrow={entry.kind === "case-study" ? "Case study" : "Project"}
               href={entry.href}
-              meta={entry.year ?? new Date(entry.date).getFullYear().toString()}
+              meta={formatWorkEntryMeta(entry)}
               tags={entry.technologies}
               title={entry.title}
             />
@@ -79,9 +84,9 @@ export default function HomePage() {
 
       <Section
         action={<Button href="/blog" variant="ghost">Browse posts</Button>}
-        description="Thoughts on product design, front-end systems, and building better digital experiences."
+        description="Notes on front-end craft, product decisions, and the systems work behind good interfaces."
         eyebrow="Writing"
-        title="Writing on design, code, and product"
+        title="Writing that supports the work"
       >
         <div className="grid gap-6 lg:grid-cols-3">
           {recentPosts.map((post) => (
@@ -104,9 +109,9 @@ export default function HomePage() {
             Open playground
           </Button>
         }
-        description="Experiments in music, software, and interaction that keep my practice sharp."
+        description="Smaller experiments in interaction, music, and software that keep my product instincts sharp."
         eyebrow="Playground"
-        title="Experiments, tools, and sessions"
+        title="Experiments and side work"
       >
         <div className="grid gap-6 lg:grid-cols-2">
           {recentPlayground.map((entry) => (

@@ -82,6 +82,7 @@ const work = defineCollection({
       kind: s.enum(["project", "case-study"]),
       featured: s.boolean().default(false),
       tags: s.array(s.string()).default([]),
+      industries: s.array(s.string()).default([]),
       technologies: s.array(s.string()).default([]),
       role: s.string().optional(),
       client: s.string().optional(),

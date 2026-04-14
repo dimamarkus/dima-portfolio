@@ -18,13 +18,14 @@ export default function AboutPage() {
   return (
     <Container>
       <Section
-        description="A concise profile page driven by the singleton site config so the personal details live in one place."
+        description="Front-end engineer, product designer, and co-founder focused on turning complex product problems into durable software."
         eyebrow="About"
         title={site.name}
       >
         <div className="grid gap-8 rounded-3xl border border-white/10 bg-slate-950/40 p-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-5">
             <p className="text-lg leading-8 text-slate-300">{site.summary}</p>
+            <p className="leading-7 text-slate-400">{site.hero.supportingText}</p>
             <div className="flex flex-wrap gap-2">
               <Tag>{site.title}</Tag>
               <Tag>{site.location}</Tag>

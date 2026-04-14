@@ -1,19 +1,21 @@
 name: Dima Markus
-title: Product designer and front-end engineer
+title: Front-end engineer and product designer
 email: hello@dimamarkus.com
 siteUrl: https://dimamarkus.com
 location: Berlin, Germany
 summary: >
-  I bridge product design and front-end engineering to turn complex ideas into
-  clear systems, durable interfaces, and better user experiences.
+  I lead product UI from concept to production, combining front-end
+  architecture, design systems, and product design to ship clear, durable
+  software.
 resumePath: /resume/dima-markus-resume.pdf
 hero:
-  eyebrow: Designer + developer
-  headline: I design and build digital products that feel clear, fast, and useful.
+  eyebrow: Front-end engineer + product designer
+  headline: I build product interfaces and front-end systems that hold up in production.
   supportingText: >
-    For 12+ years, I've worked across product design and front-end engineering,
-    shipping fintech platforms, AI tools, ecommerce experiences, and
-    data-heavy interfaces from early concept through launch.
+    I'm a co-founder and front-end engineer with 12+ years shipping AI,
+    fintech, ecommerce, and data-heavy products. My edge is turning messy
+    requirements into clear user experiences, reusable UI systems, and fast,
+    reliable execution.
 navigation:
   - label: Home
     href: /
