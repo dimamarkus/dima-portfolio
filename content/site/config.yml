@@ -1,17 +1,19 @@
 name: Dima Markus
-title: Product-minded engineer, designer, and builder
+title: Product designer and front-end engineer
 email: hello@dimamarkus.com
 siteUrl: https://dimamarkus.com
 location: Berlin, Germany
 summary: >
-  I build thoughtful product experiences, developer tools, and creative
-  experiments with a bias toward clear systems and durable execution.
+  I bridge product design and front-end engineering to turn complex ideas into
+  clear systems, durable interfaces, and better user experiences.
 resumePath: /resume/dima-markus-resume.pdf
 hero:
-  headline: A standalone portfolio built around local content, not old baggage.
+  eyebrow: Designer + developer
+  headline: I design and build digital products that feel clear, fast, and useful.
   supportingText: >
-    This rebuild strips away monorepo coupling and hybrid CMS assumptions so the
-    portfolio can become a fast, content-first standalone app.
+    For 12+ years, I've worked across product design and front-end engineering,
+    shipping fintech platforms, AI tools, ecommerce experiences, and
+    data-heavy interfaces from early concept through launch.
 navigation:
   - label: Home
     href: /

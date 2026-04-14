@@ -46,6 +46,7 @@ export default function HomePage() {
   return (
     <Container className="space-y-16">
       <Hero
+        eyebrow={site.hero.eyebrow}
         location={site.location}
         primaryActionHref="/work"
         secondaryActionHref="/blog"
@@ -57,9 +58,9 @@ export default function HomePage() {
 
       <Section
         action={<Button href="/work" variant="secondary">All work</Button>}
-        description="A small selection of migrated portfolio work that now lives in the standalone content model."
+        description="A selection of product, UX, and engineering work across fintech, AI, ecommerce, and data-heavy tools."
         eyebrow="Featured work"
-        title="Selected case studies and projects"
+        title="Selected work"
       >
         <div className="grid gap-6 lg:grid-cols-2">
           {featuredWork.map((entry) => (
@@ -78,9 +79,9 @@ export default function HomePage() {
 
       <Section
         action={<Button href="/blog" variant="ghost">Browse posts</Button>}
-        description="Recent writing from the imported blog collection, ready to be surfaced through dedicated routes."
+        description="Thoughts on product design, front-end systems, and building better digital experiences."
         eyebrow="Writing"
-        title="Recent posts"
+        title="Writing on design, code, and product"
       >
         <div className="grid gap-6 lg:grid-cols-3">
           {recentPosts.map((post) => (
@@ -103,9 +104,9 @@ export default function HomePage() {
             Open playground
           </Button>
         }
-        description="Music and experimental notes now sit in a first-class collection instead of an orphan content folder."
+        description="Experiments in music, software, and interaction that keep my practice sharp."
         eyebrow="Playground"
-        title="Side projects and sessions"
+        title="Experiments, tools, and sessions"
       >
         <div className="grid gap-6 lg:grid-cols-2">
           {recentPlayground.map((entry) => (

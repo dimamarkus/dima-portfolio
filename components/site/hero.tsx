@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Tag } from "@/components/ui/tag";
 
 type HeroProps = Readonly<{
+  eyebrow: string;
   title: string;
   supportingText: string;
   summary: string;
@@ -15,6 +16,7 @@ type HeroProps = Readonly<{
 }>;
 
 export const Hero = ({
+  eyebrow,
   title,
   supportingText,
   summary,
@@ -27,7 +29,7 @@ export const Hero = ({
     <section className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-sky-950/20 md:p-12">
       <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
         <div className="space-y-6">
-          <Tag>Standalone portfolio</Tag>
+          <Tag>{eyebrow}</Tag>
           <div className="space-y-4">
             <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
               {title}

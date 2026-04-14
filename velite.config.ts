@@ -24,6 +24,7 @@ const site = defineCollection({
     summary: s.string().min(1),
     resumePath: s.string().min(1),
     hero: s.object({
+      eyebrow: s.string().min(1),
       headline: s.string().min(1),
       supportingText: s.string().min(1),
     }),

@@ -70,7 +70,7 @@ export default function OpenGraphImage() {
                   letterSpacing: "0.24em",
                 }}
               >
-                Standalone portfolio
+                {site.hero.eyebrow}
               </div>
             </div>
 
